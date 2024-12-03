@@ -1,3 +1,6 @@
+#ifndef MINISHELL_H
+#define MINISHELL_H
+
 // Readline and history associated
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -24,3 +27,5 @@
 #include <termios.h>
 #include <curses.h>
 #include <term.h>
+
+#endif
