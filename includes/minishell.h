@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:16:14 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/02 22:46:20 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/03 19:48:25 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 
 // Global variable
-
+extern	int	g_last_exit_code;
 
 // Structs
 
