@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:15:50 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/03 19:34:17 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/04 22:26:06 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	minishell_interactive(t_data *data)
 			g_last_exit_code = execute(data);//// to pisze Przemek
 		else
 			g_last_exit_code = 1;
-		free_data(data, false);////// to pisze Przemek
+		free_data(data, false);
 	}
 }
 
@@ -59,7 +59,7 @@ void	minishell_noninteractive(t_data *data, char *arg)
 
 	usr_inputs = ft_split(arg, ';');
 	if (!usr_inputs)
-		exit_shell(data, EXIT_FAILURE);////
+		exit_shell(data, EXIT_FAILURE);
 	i = 0;
 	while (usr_inputs[i])
 	{
@@ -69,7 +69,7 @@ void	minishell_noninteractive(t_data *data, char *arg)
 		i++;
 		free_data(data, false);
 	}
-	free_str_tab(usr_inputs);/////
+	free_str_tab(usr_inputs);
 }
 
 // All fun begins here.
@@ -84,7 +84,7 @@ int	main(int argc, char **argv, char **env)
 
 	ft_memset(&data, 0, sizeof(t_data));
 	if (!start_check(&data, argc, argv) || !init_data(&data, env))
-		exit_shell(NULL, EXIT_FAILURE);///////
+		exit_shell(NULL, EXIT_FAILURE);
 	if (data.interactive)
 		minishell_interactive(&data);
 	else
