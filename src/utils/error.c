@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:18:08 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/04 22:23:12 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/05 21:55:30 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Joins two strings, frees an old one.
 // Returns new string or NULL if failed.
-char	*join_strs(char *str, char *add)
+static char	*join_strs(char *str, char *add)
 {
 	char	*tmp;
 

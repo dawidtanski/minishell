@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:16:14 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/03 19:48:25 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/05 21:57:51 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@
 
 # include "libft.h"
 
-// Macros
+// Macros //
 
 
-// Global variable
+// Global variable //
 extern	int	g_last_exit_code;
 
-// Structs
+// Structs //
 
 typedef struct s_token
 {
@@ -86,9 +86,39 @@ typedef struct s_data
 }	t_data;
 
 
-// Enums
+// Enums //
 
 
-// Functions
+// Functions //
+
+
+// Error handling
+
+//exit.c
+void	exit_shell(t_data *data, int exno);
+
+//error.c
+int		errmsg_cmd(char	*comm, char *detail, char *err_msg, int err_nb);
+void	errmsg(char *errmsg, char *detail, int quotes);
+bool	usage_message(bool return_val);
+
+//cleanup.c
+void	free_ptr(void *ptr);
+void	free_str_tab(char **tab);
+void	free_data(t_data *data, bool clear_history);
+void	close_fds(t_command *cmds, bool close_backups);
+void	free_io(t_io_fds *io);
+
+// Execution
+
+//pipe.c
+void	close_pipe_fds(t_command *cmds, t_command *skip_cmd);
+bool	create_pipes(t_data *data);
+bool	set_pipe_fds(t_command *cmds, t_command *c);
+
+//file.io
+bool	restore_io(t_io_fds *io);
+bool	redirect_io(t_io_fds *io);
+bool	check_infile_outfile(t_io_fds *io);
 
 #endif
