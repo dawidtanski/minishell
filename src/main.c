@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:15:50 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/05 21:57:56 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/06 22:54:49 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	minishell_interactive(t_data *data)
 	while (1)
 	{
 		set_signals_interactive();//// to pisze Przemek
-		data->user_input = readline(PROMPT);
+		data->usr_input = readline(PROMPT);
 		set_signals_noninteractive();//// to pisze Przemek
 		if (parse_user_input(data) == true)//// to pisze Dawid
 			g_last_exit_code = execute(data);//// to pisze Przemek
@@ -64,7 +64,7 @@ void	minishell_noninteractive(t_data *data, char *arg)
 	while (usr_inputs[i])
 	{
 		data->usr_input = ft_strdup(usr_inputs[i]);
-		if (parse_user_input(data) == true)
+		if (parse_user_input(data) == true)//////to robi Dawid
 			g_last_exit_code = 1;
 		i++;
 		free_data(data, false);

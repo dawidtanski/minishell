@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:16:14 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/05 21:57:51 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/09 22:32:47 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,24 @@
 
 # include "libft.h"
 
-// Macros //
+//// Macros ////
+# define PROMPT "\001\e[45m\002>>> \001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
+# define HEREDOC_NAME "/tmp/.minishell_heredoc_"
 
+# define CMD_NOT_FOUND 127
+# define CMD_NOT_EXECUTABLE 126
 
-// Global variable //
+# ifndef PATH_MAX
+#  define PATH_MAX 4096
+# endif
+
+# define SUCCESS 0
+# define FAILURE 1
+
+//// Global variable ////
 extern	int	g_last_exit_code;
 
-// Structs //
+//// Structs ////
 
 typedef struct s_token
 {
@@ -86,11 +97,16 @@ typedef struct s_data
 }	t_data;
 
 
-// Enums //
+//// Enums ////
 
 
-// Functions //
+//// Functions ////
 
+// Initialization
+
+//init_data.c
+bool	init_data(t_data *data, char **env);
+void	init_io(t_command *cmd);
 
 // Error handling
 
@@ -110,6 +126,27 @@ void	close_fds(t_command *cmds, bool close_backups);
 void	free_io(t_io_fds *io);
 
 // Execution
+
+//env.c
+int		env_var_count(char **env);
+int		get_env_var_index(char **env, char *var);
+char	*get_env_var_value(char **env, char *var);
+bool	is_valid_env_var_key(char *var);
+
+//env_set.c
+bool	set_env_var(t_data *data, char *key, char *value);
+bool	remove_env_var(t_data *data, int indx);
+
+//execute.c
+
+
+//execute_cmd.c
+
+
+//execute_utils.c
+bool	cmd_is_dir(char *cmd);
+int	check_cmmd_not_found(t_data * data, t_command *cmd);
+
 
 //pipe.c
 void	close_pipe_fds(t_command *cmds, t_command *skip_cmd);
