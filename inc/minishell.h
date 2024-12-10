@@ -28,4 +28,9 @@
 #include <curses.h>
 #include <term.h>
 
+
+//Functions
+int	ft_isspace(int c);
+double ft_pow(double x, double y);
+
 #endif
