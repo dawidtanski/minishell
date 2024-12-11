@@ -14,7 +14,7 @@ typedef enum	e_token_type
 	TOKEN_ENV_VAR,
 	TOKEN_EXIT_STATUS,
 	TOKEN_QUOTE_SINGLE,
-	TOKEN_QUOTE_DOUBLE
+	TOKEN_QUOTE_DOUBLE,
 }		t_token_type;
 
 typedef struct	s_token
@@ -24,5 +24,11 @@ typedef struct	s_token
 	struct s_token	*next;
 }		t_token;
 
+typedef enum	s_state
+{
+	IN_QUOTE,
+	IN_DQUOTE,
+	GENERAL,
+}
 
 #endif
