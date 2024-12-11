@@ -1,7 +1,7 @@
 #include "../inc/minishell.h"
 #include <ctype.h>
 
-// Program służący do parsowania licz oraz operatorów matematycznych
+// Program służący do parsowania liczb oraz operatorów matematycznych
 
 typedef	struct s_tokenizer
 {
@@ -25,7 +25,7 @@ void init_opinfo_map()
     op_map['-'] = (t_opinfo){1, 'L'};
     op_map['*'] = (t_opinfo){2, 'L'};
     op_map['/'] = (t_opinfo){2, 'L'};
-    op_map['^'] = (t_opinfo){3, 'R'};
+    op_map['^'] = (t_opinfo){3, 'R'};s
 }
 
 int	op_switch (char op, int lhs, int rhs)
