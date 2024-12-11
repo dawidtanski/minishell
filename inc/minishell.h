@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:16:14 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/09 22:32:47 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:37:18 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,13 @@ bool	is_valid_env_var_key(char *var);
 //env_set.c
 bool	set_env_var(t_data *data, char *key, char *value);
 bool	remove_env_var(t_data *data, int indx);
+
+//builtins
+
+//signal.c
+void	ignore_sigquit(void);
+void	set_signals_interactive(void);
+void	set_signals_noninteractive(void);
 
 //execute.c
 
