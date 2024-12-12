@@ -1,0 +1,11 @@
+{
+    "C_Cpp.intelliSenseEngine": "Default",
+    "files.associations": {
+        "*.h": "c",
+        "*.c": "c"
+    },
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/inc"
+    ]
+}
