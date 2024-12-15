@@ -3,32 +3,43 @@
 
 #include "./minishell.h"
 
-typedef enum	e_token_type
+typedef enum e_token_type
 {
-	TOKEN_WORD,
-	TOKEN_PIPE,
-	TOKEN_REDIRECT_IN,
-	TOKEN_REDIRECT_OUT,
-	TOKEN_REDIRECT_APPEND,
-	TOKEN_HEREDOC,
-	TOKEN_ENV_VAR,
-	TOKEN_EXIT_STATUS,
-	TOKEN_QUOTE_SINGLE,
-	TOKEN_QUOTE_DOUBLE,
-}		t_token_type;
+    word = -1,
+	token_null = 0,
+    token_newline = '\n',
+    token_pipe = '|',
+    token_redirect_in = '<',
+    token_redirect_out = '>',
+    token_redirect_append = 5,
+    token_heredoc = 2,
+    token_env_var = 3,
+    token_exit_status = 4,
+    token_quote_single = '\'', 
+    token_quote_double = '\"',
+} t_token_type;
 
 typedef struct	s_token
 {
-	t_token_type	type;
-	char*			value;
+	char			*data;
+	int				type;
 	struct s_token	*next;
 }		t_token;
 
 typedef enum	s_state
 {
-	IN_QUOTE,
-	IN_DQUOTE,
-	GENERAL,
-}
+	in_quote,
+	in_dquote,
+	general,
+}		t_state;
+
+typedef struct s_lexer
+{
+	t_token	*toks_list;
+	int		num_toks;
+}		t_lexer;
+
+int	lexer_build(char *input, int size, t_lexer *lexer_buf);
+void	lexer_destroy(t_lexer *lexerbuf);
 
 #endif

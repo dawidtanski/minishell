@@ -1,0 +1,14 @@
+Plan na stworzenie minishella:
+1. PROGRAM MUSI PRZYJMOWAĆ KOD WPISANY PREZ UŻYTKOWNIKA (USER INPUT) np. echo
+- Program musi oczekiwać cały czas na komendy - czyli musi działać w pętli? Czy musi jakby być na foreground?
+- Tryb interaktywny i nieinteraktywny
+- Obsługa sygnałów (skróty klawiszowe)
+
+2. //LEXER// USER INPUT MUSI BYĆ PRZETWORZONY PRZEZ PROGRAM, ROZBITY NA TOKENY, KTÓRE Z KOLEI PRZEKAŻE DO PARSERA JAKO LISTĘ TOKENÓW.
+- Przy odczytywaniu user input pomocne będzie wykorzystanie trzech stanów ; standardowy, w cudzysłowie i w podwójnym cudzysłowie
+
+3. //PARSER// analizuje sekwencję tokenów i tworzy hierarchiczna strukturę (Precedence climbing).
+
+4. //COMMAND TABLE// - drzewko stworzone przez Precedence Climbing przetwarzane jest do COMMAND TABLE.
+
+5. //EXECUTE// - program wykonuje określone zadania na podstawie danych w command table
