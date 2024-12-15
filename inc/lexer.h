@@ -5,9 +5,10 @@
 
 typedef enum e_token_type
 {
-    word = -1,
+    token_word = -1,
 	token_null = 0,
     token_newline = '\n',
+	token_whitespace = ' ',
     token_pipe = '|',
     token_redirect_in = '<',
     token_redirect_out = '>',
@@ -17,6 +18,8 @@ typedef enum e_token_type
     token_exit_status = 4,
     token_quote_single = '\'', 
     token_quote_double = '\"',
+
+	token = -1;
 } t_token_type;
 
 typedef struct	s_token
