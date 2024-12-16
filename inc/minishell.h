@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:16:14 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/11 19:37:18 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/16 22:25:12 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,15 +145,18 @@ void	set_signals_interactive(void);
 void	set_signals_noninteractive(void);
 
 //execute.c
-
+int	execute(t_data *data);
 
 //execute_cmd.c
-
+int	execute_builtin(t_data *data, t_command *cmd);
+int	execute_command(t_data *data, t_command *cmd);
 
 //execute_utils.c
 bool	cmd_is_dir(char *cmd);
 int	check_cmmd_not_found(t_data * data, t_command *cmd);
 
+//parse_path.c
+char	*get_cmd_path(t_data *data, char *name);
 
 //pipe.c
 void	close_pipe_fds(t_command *cmds, t_command *skip_cmd);
