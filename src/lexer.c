@@ -114,6 +114,8 @@ int	lexer_build(char *input, int size, t_lexer *lexer_buf)
 		return (0);
 	}
 	lexer_buf->toks_list = malloc(sizeof(t_token));
+	if (!lexer_buf->toks_list)
+		return (NULL);
 	token = lexer_buf->toks_list;
 	token_init(token, size);
 	i = 0;
@@ -125,7 +127,7 @@ int	lexer_build(char *input, int size, t_lexer *lexer_buf)
 	while (i < size && (c != '\0'))
 	{
 		token_type = get_token_type(c);
-		if (state = general)
+		if (state == general)
 		{
 			if (token_type == token_quote_single)
 			{
@@ -173,13 +175,13 @@ int	lexer_build(char *input, int size, t_lexer *lexer_buf)
 				token_init(token, size - i);
 			}
 		}
-		else if (state = in_dquote)
+		else if (state == in_dquote)
 		{
 			token->data[j++] = c;
 			if (token_type = token_quote_double)
 				state = general;
 		}
-		else if (state = in_quote)
+		else if (state == in_quote)
 		{
 			token->data[j++] = c;
 			if (token_type = token_quote_single)
@@ -196,4 +198,70 @@ int	lexer_build(char *input, int size, t_lexer *lexer_buf)
 		}
 			i++;
 		}
+		token = lexer_buf->toks_list;
+		i = 0;
+		while (token != NULL) 
+		{
+			if (token->type == token)
+   		 	{
+      		  // Sprawdzenie, czy token zaczyna się od ~
+       	 		if (token->data[0] == '~') 
+       			{
+            // Pobranie katalogu domowego użytkownika
+					const char *home = getenv("HOME");
+					if (!home) 
+						home = "."; // Jeśli zmienna HOME nie jest ustawiona, użyj bieżącego katalogu
+
+            // Przydzielenie pamięci na rozszerzoną ścieżkę
+					char *expanded = malloc(strlen(home) + strlen(token->data));
+				if (!expanded)
+					{
+						perror("malloc failed");
+						exit(EXIT_FAILURE);
+					}
+					j = 0;
+            		// Skopiowanie katalogu domowego i reszty ścieżki (po ~)
+					char *ptr = expanded;
+					while (home[j])
+						*ptr++ = home[j++];
+					j = 1;
+					while (token->data[j])
+						*ptr++ = token->data[j++];
+					*ptr = '\0';
+					//	 csprintf(expanded, "%s%s", home, token->data + 1);
+
+           			 // Zwolnienie starej pamięci i przypisanie nowej ścieżki
+           			free(token->data);
+					token->data = expanded;
+            		i++;
+				} 
+				else
+				{
+           		 // Jeżeli token nie zawiera ~, po prostu usuwamy cudzysłowy (jeśli są)
+				char *stripped = malloc(strlen(token->data) + 1);
+				if (!stripped)
+				{
+				perror("malloc failed");
+				exit(EXIT_FAILURE);
+				}
+				strip_quotes(token->data, stripped); // Funkcja strip_quotes usuwa cudzysłowy
+				free(token->data);
+				token->data = stripped;
+				i++;
+				}
+			}
+    
+    token = token->next;
 	}
+
+lexer_buf->num_toks = i;
+return i;
+}
+
+	void lexer_destroy(t_lexer	*lexerbuf)
+{
+	if (lexerbuf == NULL)
+		return;
+	
+	token_destroy(lexerbuf->toks_list);
+}
