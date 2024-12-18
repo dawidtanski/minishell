@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:16:14 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/16 22:25:12 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/18 22:19:57 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,10 @@ bool	is_valid_env_var_key(char *var);
 bool	set_env_var(t_data *data, char *key, char *value);
 bool	remove_env_var(t_data *data, int indx);
 
-//builtins
+//builtins (whole dir)
+int	cd_builtin(t_data *data, char **args);
+int	echo_builtin(t_data *data, char **args);
+
 
 //signal.c
 void	ignore_sigquit(void);
@@ -153,7 +156,7 @@ int	execute_command(t_data *data, t_command *cmd);
 
 //execute_utils.c
 bool	cmd_is_dir(char *cmd);
-int	check_cmmd_not_found(t_data * data, t_command *cmd);
+int		check_cmmd_not_found(t_data * data, t_command *cmd);
 
 //parse_path.c
 char	*get_cmd_path(t_data *data, char *name);
