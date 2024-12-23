@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:16:14 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/12/19 22:33:43 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/12/23 21:39:59 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ int	echo_builtin(t_data *data, char **args);
 int	env_builtin(t_data *data, char **args);
 int	exit_builtin(t_data *data, char **args);
 int	export_builtin(t_data *data, char **args);
+int	pwd_builtin(t_data *data, char **args);
+int	unset_builtin(t_data *data, char **args);
 
 //signal.c
 void	ignore_sigquit(void);
